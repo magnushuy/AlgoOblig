@@ -1,5 +1,6 @@
 package Oblig;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 
@@ -8,7 +9,7 @@ public class Oblig1 {
     public static void main(String[] args) {
         //Lager en random array
         int antall_element = 10;
-        //int[] a = printRandomArray(antall_element);
+        int[] a = printRandomArray(antall_element);
         //System.out.println(Arrays.toString(a));
 
         int[] b = {3,3,4,5,5,6,7,7,7,8};
@@ -26,7 +27,9 @@ public class Oblig1 {
         //rotasjon(c, -5);
 
         //flett(streng1, streng2);
-        flett2("hei på deg", "asdfasd", "123456789");
+        //flett2("hei på deg", "asdfasd", "123456789");
+
+        indexsortering(a);
 
         System.out.println();
     }
@@ -219,7 +222,7 @@ public class Oblig1 {
 
         //Looper gjennom for hver bokstav
         for(int i = 0; i < length; i++){
-            //Sjekker hver string i s
+            //Sjekker for hver string i s
             for(String t : s){
                 if(t.length() > i) sb.append(t.charAt(i));
             }
@@ -227,6 +230,37 @@ public class Oblig1 {
 
         System.out.println(sb.toString());
         return sb.toString();
+    }
+
+    //oppgave 8
+
+    public static int[] sorterArray(int[] a){
+        int[] copiedArray = new int[a.length];
+        System.arraycopy(a,0,copiedArray, 0, a.length);
+        Arrays.sort(copiedArray);
+        return copiedArray;
+    }
+
+    public static int[] indexsortering(int[] a){
+
+        //Lage tabellen som skal returneres
+        int[] indexSortert = new int[a.length];
+        //Lage en hjelpetabell som er en sortert versjon av a
+        int[] sortertA = sorterArray(a);
+        int j = 0;
+
+        for(int x : sortertA){
+            for(int i = 0; i < a.length; i++){
+                if(x == a[i]){
+                    indexSortert[j++] = i;
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(sortertA));
+        System.out.println(Arrays.toString(indexSortert));
+        return indexSortert;
     }
 
 }
