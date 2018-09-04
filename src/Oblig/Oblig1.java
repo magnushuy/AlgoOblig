@@ -11,8 +11,8 @@ public class Oblig1 {
         //int[] a = printRandomArray(antall_element);
         //System.out.println(Arrays.toString(a));
 
-        int[] b = {3,3,4,5,5,6,7,7,7,8};
-        char[] c = {'a','b','c','d','e','f','g','h','i','j'};
+        //int[] b = {3,3,4,5,5,6,7,7,7,8};
+        //char[] c = {'a','b','c','d','e','f','g','h','i','j'};
         //int[] a = new int[0];
         //kaller maks metoden
         //maks(a);
@@ -20,15 +20,16 @@ public class Oblig1 {
         //int antallUlike = antallUlikeSortert(b);
         //System.out.println(antallUlike);
 
-        rotasjon(c,3);
-        rotasjon(c, -3);
+        //rotasjon(c,3);
+        //rotasjon(c, -3);
 
         System.out.println();
 
-
+        /*
         //Oppgave 3
         int[] a = {5,3,7,4,3,5,7,8,6,7};
         System.out.println("Oppgave3:  " +antallUlikeUsortert(a));
+        */
 
         /*
         //Oppgave 4
@@ -36,6 +37,14 @@ public class Oblig1 {
         delsortering(a);
         System.out.println("Oppgave4:  " +Arrays.toString(a));
         */
+
+        //Oppgave 10
+        String a = "ABBA";
+        String b = "ABBABBA";
+        String c = "BARBERER";
+
+        System.out.println(inneholdt(a, b));  // Utskrift: true
+        System.out.println(inneholdt(a, c));  // Utskrift: false
     }
 
     //Start av maks metoden som finner største tall i en array og returnerer den
@@ -223,6 +232,24 @@ public class Oblig1 {
         }
 
         System.out.println("Tabell etter sortering: " + Arrays.toString(c));
+    }
+
+    //Oppgave 10
+    public static boolean inneholdt(String a, String b) {
+
+        if (a == null) {
+            return b == null;
+        } else if (b == null) {
+            return false;
+        }
+
+        char[] venstre = a.toCharArray();
+        char[] hoyre = b.toCharArray();
+
+        Arrays.sort(venstre);
+        Arrays.sort(hoyre);
+
+        return Arrays.equals(venstre, hoyre);
     }
 
 
