@@ -8,15 +8,20 @@ public class Oblig1 {
     public static void main(String[] args) {
         //Lager en random array
         int antall_element = 10;
-        int[] a = printRandomArray(antall_element);
-        System.out.println(Arrays.toString(a));
+        //int[] a = printRandomArray(antall_element);
+        //System.out.println(Arrays.toString(a));
+
         int[] b = {3,3,4,5,5,6,7,7,7,8};
+        char[] c = {'a','b','c','d','e','f','g','h','i','j'};
         //int[] a = new int[0];
         //kaller maks metoden
-        maks(a);
+        //maks(a);
         //antallBytter(a);
         //int antallUlike = antallUlikeSortert(b);
         //System.out.println(antallUlike);
+
+        rotasjon(c,3);
+        rotasjon(c, -3);
 
         System.out.println();
     }
@@ -135,4 +140,39 @@ public class Oblig1 {
             data[j] = swap;
         } while (true);
     }
+
+    //oppgave 5 og 6
+    public static void rotasjon(char[] c, int k){
+
+        System.out.println("Tabell før sortering: " + Arrays.toString(c));
+
+        if(k >= 0){
+            for(int y = 0; y < k; y++){
+                char last = c[c.length-1];
+
+
+                for(int i = c.length-1; i > 0; i--){
+                    c[i] = c[i-1];
+                }
+                c[0] = last;
+
+            }
+        }
+        else{
+            k = Math.abs(k);
+            for(int y = 0; y < k; y++){
+                char first = c[0];
+
+
+                for(int i = 0; i < c.length-1; i++){
+                    c[i] = c[i+1];
+                }
+                c[c.length-1] = first;
+
+            }
+        }
+
+        System.out.println("Tabell etter sortering: " + Arrays.toString(c));
+    }
+
 }
