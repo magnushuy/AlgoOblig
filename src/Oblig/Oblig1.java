@@ -29,7 +29,7 @@ public class Oblig1 {
         //flett(streng1, streng2);
         //flett2("hei på deg", "asdfasd", "123456789");
 
-        int[] abc = {1,2,3,1,5,5,3,3};
+        int[] abc = {3,2,1,4,5,6,1};
         indexsortering(abc);
 
         System.out.println();
@@ -248,20 +248,23 @@ public class Oblig1 {
         int[] indexSortert = new int[a.length];
         //Lage en hjelpetabell som er en sortert versjon av a
         int[] sortertA = sorterArray(a);
+        boolean[] sortertBoolean = new boolean[a.length];
         int j = 0;
 
         for(int x : sortertA){
             for(int i = 0; i < a.length; i++){
-                if(x == a[i]){
+                if(x == a[i] && !sortertBoolean[i]){
                     indexSortert[j++] = i;
+                    sortertBoolean[i] = true;
                     break;
                 }
             }
         }
 
-        System.out.println(Arrays.toString(a));
-        System.out.println(Arrays.toString(sortertA));
-        System.out.println(Arrays.toString(indexSortert));
+
+        System.out.println("Tabell før sortering: \n" + Arrays.toString(a));
+        System.out.println("Tabell sortert i stigende rekkefølge: \n" + Arrays.toString(sortertA));
+        System.out.println("Tabell sortert etter index: \n" + Arrays.toString(indexSortert));
         return indexSortert;
     }
 
