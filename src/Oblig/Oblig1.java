@@ -13,6 +13,8 @@ public class Oblig1 {
 
         int[] b = {3,3,4,5,5,6,7,7,7,8};
         char[] c = {'a','b','c','d','e','f','g','h','i','j'};
+        String streng1 = "abcdef";
+        String streng2 = "123456789";
         //int[] a = new int[0];
         //kaller maks metoden
         //maks(a);
@@ -20,8 +22,11 @@ public class Oblig1 {
         //int antallUlike = antallUlikeSortert(b);
         //System.out.println(antallUlike);
 
-        rotasjon(c,3);
-        rotasjon(c, -3);
+        //rotasjon(c,3);
+        //rotasjon(c, -5);
+
+        //flett(streng1, streng2);
+        flett2("hei på deg", "asdfasd", "123456789");
 
         System.out.println();
     }
@@ -173,6 +178,55 @@ public class Oblig1 {
         }
 
         System.out.println("Tabell etter sortering: " + Arrays.toString(c));
+    }
+
+    //oppgave 7a
+
+    public static String flett(String s, String t){
+        char[] a = s.toCharArray();
+        char[] b = t.toCharArray();
+        char[] flett = new char[a.length + b.length];
+        int min = Math.min(a.length, b.length);
+
+        for(int i = 0, j = 0; i < min; i++){
+            flett[j++] = a[i];
+            flett[j++] = b[i];
+        }
+
+        if(a.length > b.length)
+        System.arraycopy(a,min,flett,min*2,a.length-min);
+        else
+        System.arraycopy(b,min,flett,min*2,b.length-min);
+
+        String flettetStreng = String.valueOf(flett);
+        System.out.println(flettetStreng);
+        return flettetStreng;
+    }
+
+    //oppgave 7b
+    public static String flett2(String... s){
+        //Først må vi finne lengden av den lengste stringen
+        //Deretter må vi lage en StringBuilder
+        //Så legger vi til elementene i StringBuilder
+
+        int length = s[0].length();
+        for(int i = 1; i < s.length; i++){
+            if(s[i].length() > length) length = s[i].length();
+        }
+        //Nå har vi lengden til den lengste stringen
+
+        StringBuilder sb = new StringBuilder();
+
+        //Looper gjennom for hver bokstav
+        for(int i = 0; i < length; i++){
+            //Sjekker hver string i s
+            for(String t : s){
+                if(t.length() > i) sb.append(t.charAt(i));
+            }
+        }
+
+        System.out.println(sb.toString());
+        return sb.toString();
     }
 
 }
