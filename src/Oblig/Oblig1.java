@@ -29,7 +29,8 @@ public class Oblig1 {
         //flett(streng1, streng2);
         //flett2("hei på deg", "asdfasd", "123456789");
 
-        indexsortering(a);
+        int[] abc = {1,2,3,1,5,5,3,3};
+        indexsortering(abc);
 
         System.out.println();
     }
@@ -253,6 +254,7 @@ public class Oblig1 {
             for(int i = 0; i < a.length; i++){
                 if(x == a[i]){
                     indexSortert[j++] = i;
+                    break;
                 }
             }
         }
