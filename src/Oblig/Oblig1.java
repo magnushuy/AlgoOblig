@@ -24,6 +24,11 @@ public class Oblig1 {
         rotasjon(c, -3);
 
         System.out.println();
+
+        //Oppgave 4
+        int[] a = {6,10,9,4,1,3,8,5,2,7};
+        delsortering(a);
+        System.out.println(Arrays.toString(a));
     }
 
     //Start av maks metoden som finner største tall i en array og returnerer den
@@ -126,20 +131,28 @@ public class Oblig1 {
     }
 
     //oppgave 4
-    public static int evenOddPartition(int[] data) {
-        int i = 0, j = data.length - 1;
-        do {
-            while (i <= j && (data[i] & 1) == 0) { i++; }
-            while (i <= j && (data[j] & 1) != 0) { j--; }
 
-            if (i >= j) {
-                return i;
+    public static void delsortering(int[]a){
+        int v = 0;
+        int h = a.length-1;
+
+
+        for(int i = 0; i < a.length; i++) {
+            if(a[v] % 2 == 1) {
+                v++;
             }
-            int swap = data[i];
-            data[i] = data[j];
-            data[j] = swap;
-        } while (true);
-    }
+
+            if(a[h] % 2 == 0) {
+                h--;
+            }
+
+            if (v < h) {
+                int temp = a[v];
+                a[v] = a[h];
+                a[h] = temp;
+            }
+
+        }
 
     //oppgave 5 og 6
     public static void rotasjon(char[] c, int k){
@@ -174,5 +187,8 @@ public class Oblig1 {
 
         System.out.println("Tabell etter sortering: " + Arrays.toString(c));
     }
+
+
+
 
 }
