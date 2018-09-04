@@ -133,25 +133,26 @@ public class Oblig1 {
 
     //oppgave 4
     static void delsortering(int[] a) {
-        int evenPnt = 0;
+        int v = 0;
+        int h = a.length - 1;
 
-        // Arranging Even and Odd numbers
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 == 1) {
-                bytt(a, evenPnt, i);
-                evenPnt++;
+        for(int i = 0; i < a.length; i++) {
+            if(a[v] % 2 == 1) {
+                v++;
+            }
+
+            if(a[h] % 2 == 0) {
+                h--;
+            }
+
+            if (v < h) {
+                int temp = a[v];
+                a[v] = a[h];
+                a[h] = temp;
             }
         }
-
-        // Sorting even numbers
-        sorter(a, 0, evenPnt);
-
-        // Sorting Odd numbers
-        sorter(a, evenPnt, a.length);
-
-        for (int i : a) {
-            System.out.print(i+", ");
-        }
+        Arrays.sort(a, 0, v);
+        Arrays.sort(a, v, a.length);
     }
 
 
