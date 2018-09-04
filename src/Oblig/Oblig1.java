@@ -25,10 +25,17 @@ public class Oblig1 {
 
         System.out.println();
 
+
+        //Oppgave 3
+        int[] a = {5,3,7,4,3,5,7,8,6,7};
+        System.out.println("Oppgave3:  " +antallUlikeUsortert(a));
+
+        /*
         //Oppgave 4
         int[] a = {6,10,9,4,1,3,8,5,2,7};
         delsortering(a);
-        System.out.println("Oppgave 4: " +Arrays.toString(a));
+        System.out.println("Oppgave4:  " +Arrays.toString(a));
+        */
     }
 
     //Start av maks metoden som finner største tall i en array og returnerer den
@@ -130,6 +137,32 @@ public class Oblig1 {
         return verdi;
     }
 
+    //Oppgave 3
+    public static int antallUlikeUsortert(int[] a) {
+
+        //Slutter å sjekke hvis det er bare ett element i tabellen.
+        if (a.length < 2) {
+            return a.length;
+        }
+
+        int antallUlike = 1;
+
+        for (int i = 1; i < a.length; i++) {
+
+            int j = 0;
+
+            for (; j < i; j++) {
+                if (a[j] == a[i]) {
+                    break;
+                }
+            }
+
+            if (j == i) {
+                antallUlike++;
+            }
+        }
+        return antallUlike;
+    }
 
     //oppgave 4
     static void delsortering(int[] a) {
@@ -198,6 +231,8 @@ public class Oblig1 {
      /*
         METODER FRA UNDERVISNINGEN OG HJELPEMETODER
      */
+
+     /*
      public static void sorter(int[] a, int min, int max) {
          for (int i = min; i < (max - 1); i++) {
              for (int j = i + 1; j < max; j++) {
@@ -213,7 +248,7 @@ public class Oblig1 {
          a[i] = a[j];
          a[j] = temp;
      }
-
+     */
 
 
 
