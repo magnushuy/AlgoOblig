@@ -29,8 +29,9 @@ public class Oblig1 {
         //flett(streng1, streng2);
         //flett2("hei på deg", "asdfasd", "123456789");
 
-        int[] abc = {3,2,1,4,5,6,1};
-        indexsortering(abc, 0, a.length);
+        int[] abc = {8,3,1,4,5,6,2,0};
+        //indexsortering(abc, 0, a.length);
+        tredjeMin(abc);
 
         System.out.println();
     }
@@ -248,6 +249,9 @@ public class Oblig1 {
         int lengde = til-fra;
         if(lengde < 1) throw new Error("til er mindre enn fra");
         int[] indexSortert = new int[lengde];
+
+        //TODO: Sjekk om jeg virkelig trenger å kopiere arrayen for å sortere
+
         int[] copyA = new int[lengde];
         System.arraycopy(a,fra,copyA,0,lengde);
         System.out.println("Kopiert array: " + Arrays.toString(copyA));
@@ -275,9 +279,43 @@ public class Oblig1 {
 
     public static int[] tredjeMin(int[] a){
         int length = a.length;
-        if(length < 3) throw new NoSuchElementException("tabellen er mindre enn 3 elementer");
-        int[] treMin = new int[3];
+        if(length < 3) throw new NoSuchElementException("tabellen har mindre enn 3 tall");
+        int[] treMin = indexsortering(a,0,3);
 
+        //Tre hjelpevariabler for index til de minste tallene
+        int indexM = treMin[0];
+        int indexNm = treMin[1];
+        int indexNnm = treMin[2];
+
+        //Tre hjelpevariabler for verdien av de minste tallene
+        int m = a[indexM]; //Minst
+        int nm = a[indexNm]; //Nest minst
+        int nnm = a[indexNnm]; //Nest nest minst
+
+
+        if(a.length >3){
+            for(int i = 3; i < a.length; i++){
+                if(a[i] < nnm){ //Hvis a[i] er mindre enn nnm
+                    if(a[i] < nm){//Hvis a[i] er mindre enn nnm og nm
+                        if(a[i] < m){ //Hvis a[i] er mindre enn nmm, nm og m
+                            nnm = nm;
+                            nm = m;
+                            m = a[i];
+                        }
+                        else{
+                            nnm = nm;
+                            nm = a[i];
+                        }
+                    }
+                    else{
+                        nnm = a[i];
+                    }
+                }
+            }
+        }
+
+        treMin = new int[] {m,nm,nnm};
+        System.out.println("De tre minste tallene i tabellen: \n" + Arrays.toString(treMin));
         return treMin;
     }
 
