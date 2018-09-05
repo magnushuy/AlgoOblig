@@ -35,6 +35,12 @@ public class Oblig1 {
         //indexsortering(abc, 0, a.length);
         //tredjeMin(abc);
 
+        /* OPPGAVE 4 */
+        int[] d = {6,10,9,4,1,3,8,5,2,7};
+        delsortering(d);
+        System.out.println(Arrays.toString(d));
+
+
         System.out.println();
     }
 
@@ -162,21 +168,45 @@ public class Oblig1 {
         return verdi;
     }
 
-    //oppgave 4
-    public static int evenOddPartition(int[] data) {
-        int i = 0, j = data.length - 1;
-        do {
-            while (i <= j && (data[i] & 1) == 0) { i++; }
-            while (i <= j && (data[j] & 1) != 0) { j--; }
+    //------------- oppgave 4 --------------
 
-            if (i >= j) {
-                return i;
+    //Metode for å sortere oddetall og partall
+        public static void delsortering(int[]a) {
+            //Venstre side av tabellen. Setter indeks 0 slik at verdien ligger først i tabellen.
+            int v = 0;
+            //Høyre side av tabellen. Tar tabell-lengde minus 1 slik at det starter helt bakerst
+            int h = a.length - 1;
+
+            for(int i = 0; i < a.length; i++) {
+                /* Tar tallene fra venstre side der den setter oddetallene til siden.
+                Om tallet er 3 og man tar modulo med 2 (3%2) vil man ligge igjen med 1 i rest.
+                Hvis resultatet blir 1 og er lik 1 vil verdien flyttes til venstre side av tabellen. */
+                if(a[v] % 2 == 1) {
+                    v++;
+                }
+
+                /*Tar tallene som ligger nest bakerst i tabellen altså fra høyre side, og finner tall som er partall.
+                Om tallet er 6 og man tar modulo med 2 (6%2), vil man ligge igjen med 0 i rest.
+                Dersom resultatet blir 0 og er lik 0 vil verdien flyttes til høyre side av tabellen. */
+                if(a[h] % 2 == 0) {
+                    h--;
+                }
+
+                //Bytter tallene høyre og venstre.
+                if (v < h) {
+                    int temp = a[v];
+                    a[v] = a[h];
+                    a[h] = temp;
+                }
             }
-            int swap = data[i];
-            data[i] = data[j];
-            data[j] = swap;
-        } while (true);
+
+        //Oddetall blir sortert som ligger på venstre side.
+        Arrays.sort(a, 0, v);
+        //Partall blir sortert som ligger på høyre side.
+        Arrays.sort(a, v, a.length);
     }
+
+
 
     //oppgave 5 og 6
     public static void rotasjon(char[] c, int k){
