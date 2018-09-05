@@ -30,7 +30,7 @@ public class Oblig1 {
         //flett2("hei på deg", "asdfasd", "123456789");
 
         int[] abc = {3,2,1,4,5,6,1};
-        indexsortering(abc);
+        indexsortering(abc, 0, a.length);
 
         System.out.println();
     }
@@ -242,12 +242,17 @@ public class Oblig1 {
         return copiedArray;
     }
 
-    public static int[] indexsortering(int[] a){
+    public static int[] indexsortering(int[] a, int fra, int til){
 
         //Lage tabellen som skal returneres
-        int[] indexSortert = new int[a.length];
+        int lengde = til-fra;
+        if(lengde < 1) throw new Error("til er mindre enn fra");
+        int[] indexSortert = new int[lengde];
+        int[] copyA = new int[lengde];
+        System.arraycopy(a,fra,copyA,0,lengde);
+        System.out.println("Kopiert array: " + Arrays.toString(copyA));
         //Lage en hjelpetabell som er en sortert versjon av a
-        int[] sortertA = sorterArray(a);
+        int[] sortertA = sorterArray(copyA);
         boolean[] sortertBoolean = new boolean[a.length];
         int j = 0;
 
@@ -266,6 +271,14 @@ public class Oblig1 {
         System.out.println("Tabell sortert i stigende rekkefølge: \n" + Arrays.toString(sortertA));
         System.out.println("Tabell sortert etter index: \n" + Arrays.toString(indexSortert));
         return indexSortert;
+    }
+
+    public static int[] tredjeMin(int[] a){
+        int length = a.length;
+        if(length < 3) throw new NoSuchElementException("tabellen er mindre enn 3 elementer");
+        int[] treMin = new int[3];
+
+        return treMin;
     }
 
 }
