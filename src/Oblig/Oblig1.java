@@ -2,6 +2,7 @@ package Oblig;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
 
 public class Oblig1 {
 
@@ -237,19 +238,24 @@ public class Oblig1 {
     //Oppgave 10
     public static boolean inneholdt(String a, String b) {
 
-        if (a == null) {
-            return b == null;
-        } else if (b == null) {
-            return false;
+        // Sjekker om Tegnstrengene har store bokstav.
+        boolean aHarStoreBokstav = a.matches("[A-Z]*");
+        boolean bHarStoreBokstav = b.matches("[A-Z]*");
+
+        if(!(aHarStoreBokstav && bHarStoreBokstav)){
+            throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
         }
 
-        char[] venstre = a.toCharArray();
-        char[] hoyre = b.toCharArray();
+        // Itererer gjennom String "a", fjernes først "occurence" fra b
+        // og sjekker hvis størrelsen til b endret med 1, hvis ja
+        // fortsetter, hvis nei returnerer false.
+        String temp = b;
 
-        Arrays.sort(venstre);
-        Arrays.sort(hoyre);
-
-        return Arrays.equals(venstre, hoyre);
+        for (int i = 0; i < a.length(); i++) {
+            temp = temp.replaceFirst(Pattern.quote(a.substring(i, i + 1)), "");
+            if (b.length() - temp.length() != i + 1) return false;
+        }
+        return true;
     }
 
 
