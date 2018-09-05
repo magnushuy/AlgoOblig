@@ -20,6 +20,8 @@ public class Oblig1 {
         //kaller maks metoden
         //maks(a);
         //antallBytter(a);
+        gjennomsnittOmbytter();
+
         //int antallUlike = antallUlikeSortert(b);
         //System.out.println(antallUlike);
 
@@ -31,7 +33,7 @@ public class Oblig1 {
 
         int[] abc = {8,3,1,4,5,6,2,0};
         //indexsortering(abc, 0, a.length);
-        tredjeMin(abc);
+        //tredjeMin(abc);
 
         System.out.println();
     }
@@ -80,9 +82,34 @@ public class Oblig1 {
                 antall++;
             }
         }
-        System.out.println("Antall ombytter: " + antall);
         return antall;
     }
+
+    public static float gjennomsnittOmbytter(){
+        //Vi kjører gjennom antall bytter med forskjellige arrays med lengde 10 hundre ganger og sjekker gjennomsnittet
+        int antallKjøringer = 100;
+        int antall_element = 10;
+        int sum = 0;
+        float gjennomsnitt;
+
+        for(int i = 0; i < antallKjøringer; i++){
+            sum += antallBytter(printRandomArray(antall_element));
+        }
+
+        gjennomsnitt = (float)sum / (float)antallKjøringer;
+        System.out.println("Sum: " + sum + " Gjennomsnitt bytter: " + gjennomsnitt);
+        return gjennomsnitt;
+
+    }
+
+    /*
+        Etter flere gjennomkjøringer ligger gjennomsnittet på 7
+        Når man øker antall elementer, så nærmer antall bytter antall elementer.
+        F.eks når antall elementer er 10 000 så nærmer gjennomsnittlige antall bytter også 10 000
+        TODO: Sjekk om hvordan det sammenligner med foreleseren sin algoritme
+     */
+
+    //Slutt gjennomsnitt
 
     public static int antallUlikeSortert(int[] b){
 
