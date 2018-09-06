@@ -220,34 +220,27 @@ public class Oblig1 {
         System.out.println("Tabell etter sortering: " + Arrays.toString(c));
     }
 
-    public static void rotasjon ( char[] c, int k){ //TODO: TAR FOR LANG TID MÅ FORBEDRES
+    public static void rotasjon(char[] c, int k){
 
-        if(c.length == 0) return;
+        System.out.println("Tabell før sortering: " + Arrays.toString(c));
 
-        if (k >= 0) {
-            for (int y = 0; y < k; y++) {
-                char last = c[c.length - 1];
+        int n = c.length;
+        // tomt tabell vil ikke endre noe
+        if (n < 1) return;
 
+        // rotasjonen går motsatt vei
+        if ((k %= n) < 0) k += n;
 
-                for (int i = c.length - 1; i > 0; i--) {
-                    c[i] = c[i - 1];
-                }
-                c[0] = last;
+        //hjelpetabell
+        char[] b = Arrays.copyOfRange(c, n - k, n);
 
-            }
-        } else {
-            k = Math.abs(k);
-            for (int y = 0; y < k; y++) {
-                char first = c[0];
-
-
-                for (int i = 0; i < c.length - 1; i++) {
-                    c[i] = c[i + 1];
-                }
-                c[c.length - 1] = first;
-
-            }
+        for (int i = n - 1; i >= k; i--){
+            // forskyver
+            c[i] = c[i - k];
         }
+
+        // Kopierer inn i den andre enden da elementene skyves ut
+        System.arraycopy(b, 0, c, 0, k);
 
     }
 
