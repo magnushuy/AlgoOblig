@@ -20,7 +20,7 @@ public class Oblig1 {
         //kaller maks metoden
         //maks(a);
         //antallBytter(a);
-        gjennomsnittOmbytter();
+        //gjennomsnittOmbytter();
 
         //int antallUlike = antallUlikeSortert(b);
         //System.out.println(antallUlike);
@@ -43,6 +43,7 @@ public class Oblig1 {
         if(a.length == 0){
             throw new NoSuchElementException("Tabellen er tom");
         }
+
         //For-løkke som kjører gjennom tabellen. a.length-1 er gjort for å ikke få en ArrayOutOfBounds-error
         for(int i = 0; i < a.length-1; i++){
             if(a[i] > a[i+1]){
@@ -106,6 +107,7 @@ public class Oblig1 {
         Etter flere gjennomkjøringer ligger gjennomsnittet på 7
         Når man øker antall elementer, så nærmer antall bytter antall elementer.
         F.eks når antall elementer er 10 000 så nærmer gjennomsnittlige antall bytter også 10 000
+        Testet 1 000 000 elementer, 999 985 antall bytter
         TODO: Sjekk om hvordan det sammenligner med foreleseren sin algoritme
      */
 
