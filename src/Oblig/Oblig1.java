@@ -7,64 +7,7 @@ import java.util.regex.Pattern;
 
 public class Oblig1 {
 
-    public static void main(String[] args) {
-        //Lager en random array
-        int antall_element = 10;
-        //int[] a = printRandomArray(antall_element);
-        //System.out.println(Arrays.toString(a));
-
-        //int[] b = {3,3,4,5,5,6,7,7,7,8};
-        //char[] c = {'a','b','c','d','e','f','g','h','i','j'};
-        String streng1 = "abcdef";
-        String streng2 = "123456789";
-        //int[] a = new int[0];
-        //kaller maks metoden
-        //maks(a);
-        //antallBytter(a);
-        //gjennomsnittOmbytter();
-
-        //int antallUlike = antallUlikeSortert(b);
-        //System.out.println(antallUlike);
-
-        //rotasjon(c,3);
-        //rotasjon(c, -5);
-
-        //flett(streng1, streng2);
-        //flett2("hei på deg", "asdfasd", "123456789");
-
-        int[] abc = {8,3,1,4,5,6,2,0};
-        //indexsortering(abc, 0, a.length);
-        //tredjeMin(abc);
-
-        /* OPPGAVE 4 */
-        int[] d = {6,10,9,4,1,3,8,5,2,7};
-        delsortering(d);
-        System.out.println(Arrays.toString(d));
-
-
-        System.out.println();
-
-        /*
-        //Oppgave 3
-        int[] a = {5,3,7,4,3,5,7,8,6,7};
-        System.out.println("Oppgave3:  " +antallUlikeUsortert(a));
-        */
-
-        /*
-        //Oppgave 4
-        int[] a = {6,10,9,4,1,3,8,5,2,7};
-        delsortering(a);
-        System.out.println("Oppgave4:  " +Arrays.toString(a));
-        */
-
-        //Oppgave 10
-        String a = "ABBA";
-        String b = "ABBABBA";
-        String c = "BARBERER";
-
-        System.out.println(inneholdt(a, b));  // Utskrift: true
-        System.out.println(inneholdt(a, c));  // Utskrift: false
-    }
+    public Oblig1(){}
 
     //Start av maks metoden som finner største tall i en array og returnerer den
     public static int maks(int[] a){
@@ -95,7 +38,7 @@ public class Oblig1 {
      */
 
     //Finn gjennomsnitt
-    public static int antallBytter(int[] a){
+    public static int ombyttinger(int[] a){
         int antall = 0;
 
         if(a.length == 0){
@@ -122,7 +65,7 @@ public class Oblig1 {
         float gjennomsnitt;
 
         for(int i = 0; i < antallKjøringer; i++){
-            sum += antallBytter(printRandomArray(antall_element));
+            sum += ombyttinger(printRandomArray(antall_element));
         }
 
         gjennomsnitt = (float)sum / (float)antallKjøringer;
@@ -146,6 +89,7 @@ public class Oblig1 {
         //Sjekker om tabellen har lengde 0
         if(b.length == 0)return 0;
 
+
         //lager variabel for det minste tallet i tabellen som ligger på index 0
         int min = b[0];
         //lager variabel for å sammenligne i tabellen for å finne antall unike tall
@@ -159,6 +103,7 @@ public class Oblig1 {
             if(min > b[i]){
                 throw new IllegalStateException("Tabellen er ikke sortert");
             }
+            else min = b[i];
 
             //finner antall ulike tall i tabellen
             if(sammenlign != b[i]){
@@ -219,72 +164,65 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //------------- oppgave 4 --------------
-
-    //Metode for å sortere oddetall og partall
-        public static void delsortering(int[]a) {
-            //Venstre side av tabellen. Setter indeks 0 slik at verdien ligger først i tabellen.
-            int v = 0;
-            //Høyre side av tabellen. Tar tabell-lengde minus 1 slik at det starter helt bakerst
-            int h = a.length - 1;
-
-            for (int i = 0; i < a.length; i++) {
-                /* Tar tallene fra venstre side der den setter oddetallene til siden.
-                Om tallet er 3 og man tar modulo med 2 (3%2) vil man ligge igjen med 1 i rest.
-                Hvis resultatet blir 1 og er lik 1 vil verdien flyttes til venstre side av tabellen. */
-                if (a[v] % 2 == 1) {
-                    v++;
-                }
-
-                /*Tar tallene som ligger nest bakerst i tabellen altså fra høyre side, og finner tall som er partall.
-                Om tallet er 6 og man tar modulo med 2 (6%2), vil man ligge igjen med 0 i rest.
-                Dersom resultatet blir 0 og er lik 0 vil verdien flyttes til høyre side av tabellen. */
-                if (a[h] % 2 == 0) {
-                    h--;
-                }
-
-                //Bytter tallene høyre og venstre.
-                if (v < h) {
-                    int temp = a[v];
-                    a[v] = a[h];
-                    a[h] = temp;
-                }
-
-                //Oddetall blir sortert som ligger på venstre side.
-                Arrays.sort(a, 0, v);
-                //Partall blir sortert som ligger på høyre side.
-                Arrays.sort(a, v, a.length);
-
-     /*
-        METODER FRA UNDERVISNINGEN OG HJELPEMETODER
-     */
-
-     /*
-     public static void sorter(int[] a, int min, int max) {
-         for (int i = min; i < (max - 1); i++) {
-             for (int j = i + 1; j < max; j++) {
-                 if (a[i] > a[j]) {
-                     bytt(a, i, j);
-                 }
-             }
-         }
-     }
-
-     public static void bytt(int[] a, int i, int j) {
-         int temp = a[i];
-         a[i] = a[j];
-         a[j] = temp;
-     }
-     */
-
-
+    //oppgave 4
+    static void delsortering(int[] a) {
+        int evenPnt = 0;
+        // Arranging Even and Odd numbers
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] % 2 == 1) {
+                bytt(a, evenPnt, i);
+                evenPnt++;
             }
         }
+        // Sorting even numbers
+        sorter(a, 0, evenPnt);
+        // Sorting Odd numbers
+        sorter(a, evenPnt, a.length);
+        for (int i : a) {
+            System.out.print(i+", ");
+        }
+    }
+
+
+    /*
+       METODER FRA UNDERVISNINGEN OG HJELPEMETODER
+    */
+    public static void sorter(int[] a, int min, int max) {
+        for (int i = min; i < (max - 1); i++) {
+            for (int j = i + 1; j < max; j++) {
+                if (a[i] > a[j]) {
+                    bytt(a, i, j);
+                }
+            }
+        }
+    }
+    public static void bytt(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
 
     //oppgave 5 og 6
-    public static void rotasjon ( char[] c, int k){
+
+    public static void rotasjon ( char[] c){
 
         System.out.println("Tabell før sortering: " + Arrays.toString(c));
+
+        if(c.length == 0) return;
+
+        char last = c[c.length - 1];
+
+        for (int i = c.length - 1; i > 0; i--) {
+            c[i] = c[i - 1];
+        }
+        c[0] = last;
+
+        System.out.println("Tabell etter sortering: " + Arrays.toString(c));
+    }
+
+    public static void rotasjon ( char[] c, int k){ //TODO: TAR FOR LANG TID MÅ FORBEDRES
+
+        if(c.length == 0) return;
 
         if (k >= 0) {
             for (int y = 0; y < k; y++) {
@@ -311,7 +249,6 @@ public class Oblig1 {
             }
         }
 
-        System.out.println("Tabell etter sortering: " + Arrays.toString(c));
     }
 
     //oppgave 7a
@@ -338,11 +275,12 @@ public class Oblig1 {
     }
 
     //oppgave 7b
-    public static String flett2 (String...s){
+    public static String flett (String... s){
         //Først må vi finne lengden av den lengste stringen
         //Deretter må vi lage en StringBuilder
         //Så legger vi til elementene i StringBuilder
 
+        if(s.length == 0) return "";
         int length = s[0].length();
         for (int i = 1; i < s.length; i++) {
             if (s[i].length() > length) length = s[i].length();
@@ -372,26 +310,18 @@ public class Oblig1 {
         return copiedArray;
     }
 
-    public static int[] indexsortering ( int[] a, int fra, int til){
+    public static int[] indekssortering(int[] a){
 
         //Lage tabellen som skal returneres
-        int lengde = til - fra;
-        if (lengde < 1) throw new Error("til er mindre enn fra");
-        int[] indexSortert = new int[lengde];
-
-        //TODO: Sjekk om jeg virkelig trenger å kopiere arrayen for å sortere
-
-        int[] copyA = new int[lengde];
-        System.arraycopy(a, fra, copyA, 0, lengde);
-        System.out.println("Kopiert array: " + Arrays.toString(copyA));
+        int[] indexSortert = new int[a.length];
         //Lage en hjelpetabell som er en sortert versjon av a
-        int[] sortertA = sorterArray(copyA);
+        int[] sortertA = sorterArray(a);
         boolean[] sortertBoolean = new boolean[a.length];
         int j = 0;
 
-        for (int x : sortertA) {
-            for (int i = 0; i < a.length; i++) {
-                if (x == a[i] && !sortertBoolean[i]) {
+        for(int x : sortertA){
+            for(int i = 0; i < a.length; i++){
+                if(x == a[i] && !sortertBoolean[i]){
                     indexSortert[j++] = i;
                     sortertBoolean[i] = true;
                     break;
@@ -399,17 +329,17 @@ public class Oblig1 {
             }
         }
 
-
-        System.out.println("Tabell før sortering: \n" + Arrays.toString(a));
-        System.out.println("Tabell sortert i stigende rekkefølge: \n" + Arrays.toString(sortertA));
-        System.out.println("Tabell sortert etter index: \n" + Arrays.toString(indexSortert));
+        System.out.println(Arrays.toString(a));
+        System.out.println(Arrays.toString(sortertA));
+        System.out.println(Arrays.toString(indexSortert));
         return indexSortert;
     }
 
     public static int[] tredjeMin ( int[] a){
         int length = a.length;
         if (length < 3) throw new NoSuchElementException("tabellen har mindre enn 3 tall");
-        int[] treMin = indexsortering(a, 0, 3);
+        int[] treMin = {a[0],a[1],a[2]};
+        indekssortering(treMin);
 
         //Tre hjelpevariabler for index til de minste tallene
         int indexM = treMin[0];
