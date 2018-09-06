@@ -3,17 +3,18 @@ package Oblig;
 import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
 
 public class Oblig1 {
 
     public static void main(String[] args) {
         //Lager en random array
         int antall_element = 10;
-        int[] a = printRandomArray(antall_element);
+        //int[] a = printRandomArray(antall_element);
         //System.out.println(Arrays.toString(a));
 
-        int[] b = {3,3,4,5,5,6,7,7,7,8};
-        char[] c = {'a','b','c','d','e','f','g','h','i','j'};
+        //int[] b = {3,3,4,5,5,6,7,7,7,8};
+        //char[] c = {'a','b','c','d','e','f','g','h','i','j'};
         String streng1 = "abcdef";
         String streng2 = "123456789";
         //int[] a = new int[0];
@@ -42,6 +43,27 @@ public class Oblig1 {
 
 
         System.out.println();
+
+        /*
+        //Oppgave 3
+        int[] a = {5,3,7,4,3,5,7,8,6,7};
+        System.out.println("Oppgave3:  " +antallUlikeUsortert(a));
+        */
+
+        /*
+        //Oppgave 4
+        int[] a = {6,10,9,4,1,3,8,5,2,7};
+        delsortering(a);
+        System.out.println("Oppgave4:  " +Arrays.toString(a));
+        */
+
+        //Oppgave 10
+        String a = "ABBA";
+        String b = "ABBABBA";
+        String c = "BARBERER";
+
+        System.out.println(inneholdt(a, b));  // Utskrift: true
+        System.out.println(inneholdt(a, c));  // Utskrift: false
     }
 
     //Start av maks metoden som finner største tall i en array og returnerer den
@@ -170,6 +192,33 @@ public class Oblig1 {
         return verdi;
     }
 
+    //Oppgave 3
+    public static int antallUlikeUsortert(int[] a) {
+
+        //Slutter å sjekke hvis det er bare ett element i tabellen.
+        if (a.length < 2) {
+            return a.length;
+        }
+
+        int antallUlike = 1;
+
+        for (int i = 1; i < a.length; i++) {
+
+            int j = 0;
+
+            for (; j < i; j++) {
+                if (a[j] == a[i]) {
+                    break;
+                }
+            }
+
+            if (j == i) {
+                antallUlike++;
+            }
+        }
+        return antallUlike;
+    }
+
     //------------- oppgave 4 --------------
 
     //Metode for å sortere oddetall og partall
@@ -179,18 +228,18 @@ public class Oblig1 {
             //Høyre side av tabellen. Tar tabell-lengde minus 1 slik at det starter helt bakerst
             int h = a.length - 1;
 
-            for(int i = 0; i < a.length; i++) {
+            for (int i = 0; i < a.length; i++) {
                 /* Tar tallene fra venstre side der den setter oddetallene til siden.
                 Om tallet er 3 og man tar modulo med 2 (3%2) vil man ligge igjen med 1 i rest.
                 Hvis resultatet blir 1 og er lik 1 vil verdien flyttes til venstre side av tabellen. */
-                if(a[v] % 2 == 1) {
+                if (a[v] % 2 == 1) {
                     v++;
                 }
 
                 /*Tar tallene som ligger nest bakerst i tabellen altså fra høyre side, og finner tall som er partall.
                 Om tallet er 6 og man tar modulo med 2 (6%2), vil man ligge igjen med 0 i rest.
                 Dersom resultatet blir 0 og er lik 0 vil verdien flyttes til høyre side av tabellen. */
-                if(a[h] % 2 == 0) {
+                if (a[h] % 2 == 0) {
                     h--;
                 }
 
@@ -200,182 +249,227 @@ public class Oblig1 {
                     a[v] = a[h];
                     a[h] = temp;
                 }
-            }
 
-        //Oddetall blir sortert som ligger på venstre side.
-        Arrays.sort(a, 0, v);
-        //Partall blir sortert som ligger på høyre side.
-        Arrays.sort(a, v, a.length);
-    }
+                //Oddetall blir sortert som ligger på venstre side.
+                Arrays.sort(a, 0, v);
+                //Partall blir sortert som ligger på høyre side.
+                Arrays.sort(a, v, a.length);
 
 
+                //oppgave 5 og 6
+                public static void rotasjon ( char[] c, int k){
 
-    //oppgave 5 og 6
-    public static void rotasjon(char[] c, int k){
+                    System.out.println("Tabell før sortering: " + Arrays.toString(c));
 
-        System.out.println("Tabell før sortering: " + Arrays.toString(c));
-
-        if(k >= 0){
-            for(int y = 0; y < k; y++){
-                char last = c[c.length-1];
-
-
-                for(int i = c.length-1; i > 0; i--){
-                    c[i] = c[i-1];
-                }
-                c[0] = last;
-
-            }
-        }
-        else{
-            k = Math.abs(k);
-            for(int y = 0; y < k; y++){
-                char first = c[0];
+                    if (k >= 0) {
+                        for (int y = 0; y < k; y++) {
+                            char last = c[c.length - 1];
 
 
-                for(int i = 0; i < c.length-1; i++){
-                    c[i] = c[i+1];
-                }
-                c[c.length-1] = first;
+                            for (int i = c.length - 1; i > 0; i--) {
+                                c[i] = c[i - 1];
+                            }
+                            c[0] = last;
 
-            }
-        }
-
-        System.out.println("Tabell etter sortering: " + Arrays.toString(c));
-    }
-
-    //oppgave 7a
-
-    public static String flett(String s, String t){
-        char[] a = s.toCharArray();
-        char[] b = t.toCharArray();
-        char[] flett = new char[a.length + b.length];
-        int min = Math.min(a.length, b.length);
-
-        for(int i = 0, j = 0; i < min; i++){
-            flett[j++] = a[i];
-            flett[j++] = b[i];
-        }
-
-        if(a.length > b.length)
-        System.arraycopy(a,min,flett,min*2,a.length-min);
-        else
-        System.arraycopy(b,min,flett,min*2,b.length-min);
-
-        String flettetStreng = String.valueOf(flett);
-        System.out.println(flettetStreng);
-        return flettetStreng;
-    }
-
-    //oppgave 7b
-    public static String flett2(String... s){
-        //Først må vi finne lengden av den lengste stringen
-        //Deretter må vi lage en StringBuilder
-        //Så legger vi til elementene i StringBuilder
-
-        int length = s[0].length();
-        for(int i = 1; i < s.length; i++){
-            if(s[i].length() > length) length = s[i].length();
-        }
-        //Nå har vi lengden til den lengste stringen
-
-        StringBuilder sb = new StringBuilder();
-
-        //Looper gjennom for hver bokstav
-        for(int i = 0; i < length; i++){
-            //Sjekker for hver string i s
-            for(String t : s){
-                if(t.length() > i) sb.append(t.charAt(i));
-            }
-        }
-
-        System.out.println(sb.toString());
-        return sb.toString();
-    }
-
-    //oppgave 8
-
-    public static int[] sorterArray(int[] a){
-        int[] copiedArray = new int[a.length];
-        System.arraycopy(a,0,copiedArray, 0, a.length);
-        Arrays.sort(copiedArray);
-        return copiedArray;
-    }
-
-    public static int[] indexsortering(int[] a, int fra, int til){
-
-        //Lage tabellen som skal returneres
-        int lengde = til-fra;
-        if(lengde < 1) throw new Error("til er mindre enn fra");
-        int[] indexSortert = new int[lengde];
-
-        //TODO: Sjekk om jeg virkelig trenger å kopiere arrayen for å sortere
-
-        int[] copyA = new int[lengde];
-        System.arraycopy(a,fra,copyA,0,lengde);
-        System.out.println("Kopiert array: " + Arrays.toString(copyA));
-        //Lage en hjelpetabell som er en sortert versjon av a
-        int[] sortertA = sorterArray(copyA);
-        boolean[] sortertBoolean = new boolean[a.length];
-        int j = 0;
-
-        for(int x : sortertA){
-            for(int i = 0; i < a.length; i++){
-                if(x == a[i] && !sortertBoolean[i]){
-                    indexSortert[j++] = i;
-                    sortertBoolean[i] = true;
-                    break;
-                }
-            }
-        }
-
-
-        System.out.println("Tabell før sortering: \n" + Arrays.toString(a));
-        System.out.println("Tabell sortert i stigende rekkefølge: \n" + Arrays.toString(sortertA));
-        System.out.println("Tabell sortert etter index: \n" + Arrays.toString(indexSortert));
-        return indexSortert;
-    }
-
-    public static int[] tredjeMin(int[] a){
-        int length = a.length;
-        if(length < 3) throw new NoSuchElementException("tabellen har mindre enn 3 tall");
-        int[] treMin = indexsortering(a,0,3);
-
-        //Tre hjelpevariabler for index til de minste tallene
-        int indexM = treMin[0];
-        int indexNm = treMin[1];
-        int indexNnm = treMin[2];
-
-        //Tre hjelpevariabler for verdien av de minste tallene
-        int m = a[indexM]; //Minst
-        int nm = a[indexNm]; //Nest minst
-        int nnm = a[indexNnm]; //Nest nest minst
-
-
-        if(a.length >3){
-            for(int i = 3; i < a.length; i++){
-                if(a[i] < nnm){ //Hvis a[i] er mindre enn nnm
-                    if(a[i] < nm){//Hvis a[i] er mindre enn nnm og nm
-                        if(a[i] < m){ //Hvis a[i] er mindre enn nmm, nm og m
-                            nnm = nm;
-                            nm = m;
-                            m = a[i];
                         }
-                        else{
-                            nnm = nm;
-                            nm = a[i];
+                    } else {
+                        k = Math.abs(k);
+                        for (int y = 0; y < k; y++) {
+                            char first = c[0];
+
+
+                            for (int i = 0; i < c.length - 1; i++) {
+                                c[i] = c[i + 1];
+                            }
+                            c[c.length - 1] = first;
+
                         }
                     }
-                    else{
-                        nnm = a[i];
-                    }
+
+                    System.out.println("Tabell etter sortering: " + Arrays.toString(c));
                 }
+
+                //oppgave 7a
+
+                public static String flett (String s, String t){
+                    char[] a = s.toCharArray();
+                    char[] b = t.toCharArray();
+                    char[] flett = new char[a.length + b.length];
+                    int min = Math.min(a.length, b.length);
+
+                    for (int i = 0, j = 0; i < min; i++) {
+                        flett[j++] = a[i];
+                        flett[j++] = b[i];
+                    }
+
+                    if (a.length > b.length)
+                        System.arraycopy(a, min, flett, min * 2, a.length - min);
+                    else
+                        System.arraycopy(b, min, flett, min * 2, b.length - min);
+
+                    String flettetStreng = String.valueOf(flett);
+                    System.out.println(flettetStreng);
+                    return flettetStreng;
+                }
+
+                //oppgave 7b
+                public static String flett2 (String...s){
+                    //Først må vi finne lengden av den lengste stringen
+                    //Deretter må vi lage en StringBuilder
+                    //Så legger vi til elementene i StringBuilder
+
+                    int length = s[0].length();
+                    for (int i = 1; i < s.length; i++) {
+                        if (s[i].length() > length) length = s[i].length();
+                    }
+                    //Nå har vi lengden til den lengste stringen
+
+                    StringBuilder sb = new StringBuilder();
+
+                    //Looper gjennom for hver bokstav
+                    for (int i = 0; i < length; i++) {
+                        //Sjekker for hver string i s
+                        for (String t : s) {
+                            if (t.length() > i) sb.append(t.charAt(i));
+                        }
+                    }
+
+                    System.out.println(sb.toString());
+                    return sb.toString();
+                }
+
+                //oppgave 8
+
+                public static int[] sorterArray ( int[] a){
+                    int[] copiedArray = new int[a.length];
+                    System.arraycopy(a, 0, copiedArray, 0, a.length);
+                    Arrays.sort(copiedArray);
+                    return copiedArray;
+                }
+
+                public static int[] indexsortering ( int[] a, int fra, int til){
+
+                    //Lage tabellen som skal returneres
+                    int lengde = til - fra;
+                    if (lengde < 1) throw new Error("til er mindre enn fra");
+                    int[] indexSortert = new int[lengde];
+
+                    //TODO: Sjekk om jeg virkelig trenger å kopiere arrayen for å sortere
+
+                    int[] copyA = new int[lengde];
+                    System.arraycopy(a, fra, copyA, 0, lengde);
+                    System.out.println("Kopiert array: " + Arrays.toString(copyA));
+                    //Lage en hjelpetabell som er en sortert versjon av a
+                    int[] sortertA = sorterArray(copyA);
+                    boolean[] sortertBoolean = new boolean[a.length];
+                    int j = 0;
+
+                    for (int x : sortertA) {
+                        for (int i = 0; i < a.length; i++) {
+                            if (x == a[i] && !sortertBoolean[i]) {
+                                indexSortert[j++] = i;
+                                sortertBoolean[i] = true;
+                                break;
+                            }
+                        }
+                    }
+
+
+                    System.out.println("Tabell før sortering: \n" + Arrays.toString(a));
+                    System.out.println("Tabell sortert i stigende rekkefølge: \n" + Arrays.toString(sortertA));
+                    System.out.println("Tabell sortert etter index: \n" + Arrays.toString(indexSortert));
+                    return indexSortert;
+                }
+
+                public static int[] tredjeMin ( int[] a){
+                    int length = a.length;
+                    if (length < 3) throw new NoSuchElementException("tabellen har mindre enn 3 tall");
+                    int[] treMin = indexsortering(a, 0, 3);
+
+                    //Tre hjelpevariabler for index til de minste tallene
+                    int indexM = treMin[0];
+                    int indexNm = treMin[1];
+                    int indexNnm = treMin[2];
+
+                    //Tre hjelpevariabler for verdien av de minste tallene
+                    int m = a[indexM]; //Minst
+                    int nm = a[indexNm]; //Nest minst
+                    int nnm = a[indexNnm]; //Nest nest minst
+
+
+                    if (a.length > 3) {
+                        for (int i = 3; i < a.length; i++) {
+                            if (a[i] < nnm) { //Hvis a[i] er mindre enn nnm
+                                if (a[i] < nm) {//Hvis a[i] er mindre enn nnm og nm
+                                    if (a[i] < m) { //Hvis a[i] er mindre enn nmm, nm og m
+                                        nnm = nm;
+                                        nm = m;
+                                        m = a[i];
+                                    } else {
+                                        nnm = nm;
+                                        nm = a[i];
+                                    }
+                                } else {
+                                    nnm = a[i];
+                                }
+                            }
+                        }
+                    }
+
+                    treMin = new int[]{m, nm, nnm};
+                    System.out.println("De tre minste tallene i tabellen: \n" + Arrays.toString(treMin));
+                    return treMin;
+                }
+
+                //Oppgave 10
+                public static boolean inneholdt (String a, String b){
+
+                    // Sjekker om Tegnstrengene har store bokstav.
+                    boolean aHarStoreBokstav = a.matches("[A-Z]*");
+                    boolean bHarStoreBokstav = b.matches("[A-Z]*");
+
+                    if (!(aHarStoreBokstav && bHarStoreBokstav)) {
+                        throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
+                    }
+
+                    // Itererer gjennom String "a", fjernes først "occurence" fra b
+                    // og sjekker hvis størrelsen til b endret med 1, hvis ja
+                    // fortsetter, hvis nei returnerer false.
+                    String temp = b;
+
+                    for (int i = 0; i < a.length(); i++) {
+                        temp = temp.replaceFirst(Pattern.quote(a.substring(i, i + 1)), "");
+                        if (b.length() - temp.length() != i + 1) return false;
+                    }
+                    return true;
+                }
+
+
+
+
+     /*
+        METODER FRA UNDERVISNINGEN OG HJELPEMETODER
+     */
+
+     /*
+     public static void sorter(int[] a, int min, int max) {
+         for (int i = min; i < (max - 1); i++) {
+             for (int j = i + 1; j < max; j++) {
+                 if (a[i] > a[j]) {
+                     bytt(a, i, j);
+                 }
+             }
+         }
+     }
+
+     public static void bytt(int[] a, int i, int j) {
+         int temp = a[i];
+         a[i] = a[j];
+         a[j] = temp;
+     }
+     */
+
+
             }
         }
-
-        treMin = new int[] {m,nm,nnm};
-        System.out.println("De tre minste tallene i tabellen: \n" + Arrays.toString(treMin));
-        return treMin;
     }
-
-}
