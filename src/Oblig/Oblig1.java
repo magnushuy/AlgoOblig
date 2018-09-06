@@ -329,9 +329,6 @@ public class Oblig1 {
             }
         }
 
-        System.out.println(Arrays.toString(a));
-        System.out.println(Arrays.toString(sortertA));
-        System.out.println(Arrays.toString(indexSortert));
         return indexSortert;
     }
 
@@ -339,7 +336,7 @@ public class Oblig1 {
         int length = a.length;
         if (length < 3) throw new NoSuchElementException("tabellen har mindre enn 3 tall");
         int[] treMin = {a[0],a[1],a[2]};
-        indekssortering(treMin);
+        treMin = indekssortering(treMin);
 
         //Tre hjelpevariabler for index til de minste tallene
         int indexM = treMin[0];
@@ -380,8 +377,8 @@ public class Oblig1 {
     public static boolean inneholdt (String a, String b){
 
         // Sjekker om Tegnstrengene har store bokstav.
-        boolean aHarStoreBokstav = a.matches("[A-Z]*");
-        boolean bHarStoreBokstav = b.matches("[A-Z]*");
+        boolean aHarStoreBokstav = a.matches("[A-ZÅØÆ]*");
+        boolean bHarStoreBokstav = b.matches("[A-ZÅØÆ]*");
 
         if (!(aHarStoreBokstav && bHarStoreBokstav)) {
             throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
