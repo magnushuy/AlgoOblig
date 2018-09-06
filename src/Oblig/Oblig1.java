@@ -7,6 +7,19 @@ import java.util.regex.Pattern;
 
 public class Oblig1 {
 
+    private static void charbytt(char[] a, int i, int j){
+
+        char temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
+    private static void snu(char[] c, int v, int h){
+        while (v < h){
+            charbytt(c, v++, h--);
+        }
+    }
+
     public Oblig1(){}
 
     //Start av maks metoden som finner største tall i en array og returnerer den
@@ -222,21 +235,18 @@ public class Oblig1 {
 
     public static void rotasjon(char[] c, int k){
 
-        System.out.println("Tabell før sortering: " + Arrays.toString(c));
-
         int n = c.length;
-        // tomt tabell vil ikke endre noe
         if (n < 1) return;
 
-        // rotasjonen går motsatt vei
-        if ((k %= n) < 0) k += n;
+        k %= n; //k er et tall mellom -n og n
+        if (k < 0) k += n;
 
-        //hjelpetabell
+        //Lager en hjelpetabell og kopierer den delen som blir skjøvet ut av 
         char[] b = Arrays.copyOfRange(c, n - k, n);
 
         for (int i = n - 1; i >= k; i--){
             // forskyver
-            c[i] = c[i - k];
+            System.arraycopy(c,i-k , c, i,1);
         }
 
         // Kopierer inn i den andre enden da elementene skyves ut
