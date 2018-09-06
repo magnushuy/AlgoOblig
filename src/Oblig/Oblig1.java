@@ -2,6 +2,8 @@ package Oblig;
 
 import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 
@@ -165,6 +167,7 @@ public class Oblig1 {
     }
 
     //oppgave 4
+    /*
     static void delsortering(int[] a) {
         int evenPnt = 0;
         // Arranging Even and Odd numbers
@@ -181,6 +184,30 @@ public class Oblig1 {
         for (int i : a) {
             System.out.print(i+", ");
         }
+    }
+    */
+    //oppgave 4
+    static void delsortering(int[] a) {
+        int v = 0;
+        int h = a.length - 1;
+
+        for(int i = 0; i < a.length; i++) {
+            if(a[v] % 2 == 1) {
+                v++;
+            }
+
+            if(a[h] % 2 == 0) {
+                h--;
+            }
+
+            if (v < h) {
+                int temp = a[v];
+                a[v] = a[h];
+                a[h] = temp;
+            }
+        }
+        Arrays.sort(a, 0, v);
+        Arrays.sort(a, v, a.length);
     }
 
 
@@ -374,7 +401,9 @@ public class Oblig1 {
     }
 
     //Oppgave 10
+    /*
     public static boolean inneholdt (String a, String b){
+
 
         // Sjekker om Tegnstrengene har store bokstav.
         boolean aHarStoreBokstav = a.matches("[A-ZÅØÆ]*");
@@ -383,6 +412,7 @@ public class Oblig1 {
         if (!(aHarStoreBokstav && bHarStoreBokstav)) {
             throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
         }
+
 
         // Itererer gjennom String "a", fjernes først "occurence" fra b
         // og sjekker hvis størrelsen til b endret med 1, hvis ja
@@ -395,4 +425,79 @@ public class Oblig1 {
         }
         return true;
     }
+    */
+
+    /*
+    public static boolean inneholdt(String a, String b) {
+
+        // Sjekker om Tegnstrengene har store bokstav.
+        boolean aHarStoreBokstav = a.matches("[A-ZÅØÆ]*");
+        boolean bHarStoreBokstav = b.matches("[A-ZÅØÆ]*");
+
+        if (!(aHarStoreBokstav && bHarStoreBokstav)) {
+            throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
+        }
+
+        int diff = a.length() - b.length();
+        while (a.length() > 0) {
+            b = b.replace(a.substring(0, 1), "");
+            a = a.replace(a.substring(0, 1), "");
+            if (diff != a.length() - b.length())
+                return false;
+        }
+        return true;
     }
+    */
+
+
+    /*
+    public static boolean inneholdt(String a, String b) {
+
+        // Sjekker om Tegnstrengene har store bokstav.
+        boolean aHarStoreBokstav = a.matches("[A-ZÅØÆ]*");
+        boolean bHarStoreBokstav = b.matches("[A-ZÅØÆ]*");
+
+        if (!(aHarStoreBokstav && bHarStoreBokstav)) {
+            throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
+        }
+
+
+        boolean status = true;
+        Map<String,Integer> mapA=new HashMap<>();
+        Map<String,Integer> mapB=new HashMap<>();
+        for(char i:a.toCharArray()){
+            Integer val=mapA.get(""+i);
+            if(val!=null){
+                mapA.put(""+i,val+1);
+            } else {
+                mapA.put(""+i,1);
+            }
+        }
+        for(char i:b.toCharArray()){
+            Integer val=mapB.get(""+i);
+            if(val!=null){
+                mapB.put(""+i,val+1);
+            } else {
+                mapB.put(""+i,1);
+            }
+        }
+
+        for(Map.Entry<String,Integer> entry:mapA.entrySet()){
+            if (mapB.get(entry.getKey()) == null || entry.getValue() >
+                    mapB.get(entry.getKey())) {
+                status = false;
+            }
+        }
+        return status;
+    }
+    */
+
+    public static boolean inneholdt(String a, String b) {
+        return a != null && b != null && a.hashCode() == b.hashCode()
+                && a.equals(b);
+    }
+
+
+
+
+}
