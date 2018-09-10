@@ -241,7 +241,7 @@ public class Oblig1 {
         k %= n; //k er et tall mellom -n og n
         if (k < 0) k += n;
 
-        //Lager en hjelpetabell og kopierer den delen som blir skjøvet ut av 
+        //Lager en hjelpetabell og kopierer den delen som blir skjøvet ut av
         char[] b = Arrays.copyOfRange(c, n - k, n);
 
         for (int i = n - 1; i >= k; i--){
