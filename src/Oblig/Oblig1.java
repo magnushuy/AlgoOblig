@@ -7,6 +7,15 @@ import java.util.regex.Pattern;
 
 public class Oblig1 {
 
+    /*
+      METODER FRA UNDERVISNINGEN OG HJELPEMETODER
+   */
+    public static void bytt(int[] a, int i, int j) {
+        int temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
+    }
+
     private static void charbytt(char[] a, int i, int j){
 
         char temp = a[i];
@@ -179,41 +188,29 @@ public class Oblig1 {
 
     //oppgave 4
     static void delsortering(int[] a) {
-        int evenPnt = 0;
-        // Arranging Even and Odd numbers
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 == 1) {
-                bytt(a, evenPnt, i);
-                evenPnt++;
-            }
+
+        int venstre = 0;
+        int hoyre = a.length - 1;
+
+        while (venstre < a.length && (a[venstre] & 1) != 0)
+            venstre++;
+        while (hoyre >= 0 && (a[hoyre] & 1) == 0)
+            hoyre--;
+
+        while (true) {
+            if (venstre < hoyre) bytt(a, venstre++, hoyre--);
+            else break;
+            while ((a[venstre] & 1) != 0)
+                venstre++;
+            while ((a[hoyre] & 1) == 0)
+                hoyre--;
         }
         // Sorting even numbers
-        sorter(a, 0, evenPnt);
+        Arrays.sort(a,0,venstre);
         // Sorting Odd numbers
-        sorter(a, evenPnt, a.length);
-        for (int i : a) {
-            System.out.print(i+", ");
-        }
+        Arrays.sort(a,venstre,a.length);
     }
 
-
-    /*
-       METODER FRA UNDERVISNINGEN OG HJELPEMETODER
-    */
-    public static void sorter(int[] a, int min, int max) {
-        for (int i = min; i < (max - 1); i++) {
-            for (int j = i + 1; j < max; j++) {
-                if (a[i] > a[j]) {
-                    bytt(a, i, j);
-                }
-            }
-        }
-    }
-    public static void bytt(int[] a, int i, int j) {
-        int temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
 
     //oppgave 5 og 6
 
