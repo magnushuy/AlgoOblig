@@ -26,18 +26,6 @@ public class Oblig1 {
         a[j] = temp;
     }
 
-    private static void charbytt(char[] a, int i, int j){
-
-        char temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
-    }
-
-    private static void snu(char[] c, int v, int h){
-        while (v < h){
-            charbytt(c, v++, h--);
-        }
-    }
 
     public Oblig1(){}
 
@@ -68,7 +56,6 @@ public class Oblig1 {
     Vi finner ut gjennomsnittet:
      */
 
-    //Finn gjennomsnitt
     public static int ombyttinger(int[] a){
         int antall = 0;
 
@@ -109,10 +96,8 @@ public class Oblig1 {
         Når man øker antall elementer, så nærmer antall bytter antall elementer.
         F.eks når antall elementer er 10 000 så nærmer gjennomsnittlige antall bytter også 10 000
         Testet 1 000 000 elementer, 999 985 antall bytter
-        TODO: Sjekk om hvordan det sammenligner med foreleseren sin algoritme
      */
 
-    //Slutt gjennomsnitt
 //
     public static int antallUlikeSortert(int[] b){
 
