@@ -374,25 +374,63 @@ public class Oblig1 {
     }
 
     //Oppgave 10
-    public static boolean inneholdt (String a, String b){
-
-        // Sjekker om Tegnstrengene har store bokstav.
-        boolean aHarStoreBokstav = a.matches("[A-ZÅØÆ]*");
-        boolean bHarStoreBokstav = b.matches("[A-ZÅØÆ]*");
-
-        if (!(aHarStoreBokstav && bHarStoreBokstav)) {
-            throw new IllegalArgumentException("Tegnstrengene a og b ma ha kun store bokstaver!");
+    public static boolean inneholdt(String a, String b) {
+        if(a == "") {
+            return true;
         }
 
-        // Itererer gjennom String "a", fjernes først "occurence" fra b
-        // og sjekker hvis størrelsen til b endret med 1, hvis ja
-        // fortsetter, hvis nei returnerer false.
-        String temp = b;
+        char[] bokstavtyper = new char[29];
+        int[] antallBokstaver = new int[29];
+        int index = 65;
+        boolean bokstavFunnet;
 
-        for (int i = 0; i < a.length(); i++) {
-            temp = temp.replaceFirst(Pattern.quote(a.substring(i, i + 1)), "");
-            if (b.length() - temp.length() != i + 1) return false;
+        //Legger til alle bokstavene i tabellen bokstavtyper
+        for(int i = 0; i < 26; i++) {
+            bokstavtyper[i] = (char) index;
+            index++;
         }
+
+        bokstavtyper[26] = (char) 198;
+        bokstavtyper[27] = (char) 216;
+        bokstavtyper[28] = (char) 197;
+
+        //Legger til antallet som finnes av hver bokstav i ordet a i tabellen antallBokstaver
+        for(int j = 0; j < a.length(); j++) {
+            index = 0;
+            bokstavFunnet = false;
+
+            while(!bokstavFunnet) {
+                if(bokstavtyper[index] == a.charAt(j)) {
+                    antallBokstaver[index]++;
+                    bokstavFunnet = true;
+                } else {
+                    index++;
+                }
+            }
+        }
+
+        //Trekker fra antallet som finnes av hver bokstav i ordet b i tabellen antallBokstaver
+        for(int k = 0; k < b.length(); k++) {
+            index = 0;
+            bokstavFunnet = false;
+
+            while(!bokstavFunnet) {
+                if(bokstavtyper[index] == b.charAt(k)) {
+                    antallBokstaver[index]--;
+                    bokstavFunnet = true;
+                } else {
+                    index++;
+                }
+            }
+        }
+
+        //Sjekker om det finnes bokstaver hvor antallet i ordet a er storre enn antallet i ordet b
+        for(int l = 0; l < antallBokstaver.length; l++) {
+            if(antallBokstaver[l] > 0) {
+                return false;
+            }
+        }
+
         return true;
     }
     }
