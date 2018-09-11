@@ -41,6 +41,8 @@ public class Oblig1 {
 
     public Oblig1(){}
 
+    ////////////Oppgave 1/////////////////
+
     //Start av maks metoden som finner største tall i en array og returnerer den
     public static int maks(int[] a){
         if(a.length == 0){
@@ -165,7 +167,7 @@ public class Oblig1 {
         return verdi;
     }
 
-    //Oppgave 3
+    /////////////Oppgave 3 ///////////////////
     public static int antallUlikeUsortert(int[] a) {
 
         //Slutter å sjekke hvis det er bare ett element i tabellen.
@@ -192,7 +194,7 @@ public class Oblig1 {
         return antallUlike;
     }
 
-    //oppgave 4
+    //////////////// Oppgave 4/////////////////////////
     static void delsortering(int[] a) {
 
         int venstre = 0;
@@ -218,7 +220,7 @@ public class Oblig1 {
     }
 
 
-    //oppgave 5 og 6
+    /////////////Oppgave 5 og 6 //////////////////////
 
     public static void rotasjon ( char[] c){
 
@@ -255,7 +257,7 @@ public class Oblig1 {
 
     }
 
-    //oppgave 7a
+    /////////////////oppgave 7a////////////////
 
     public static String flett (String s, String t){
         char[] a = s.toCharArray();
@@ -277,7 +279,7 @@ public class Oblig1 {
         return flettetStreng;
     }
 
-    //oppgave 7b
+    //////oppgave 7b
     public static String flett (String... s){
         //Først må vi finne lengden av den lengste stringen
         //Deretter må vi lage en StringBuilder
@@ -303,7 +305,7 @@ public class Oblig1 {
         return sb.toString();
     }
 
-    //oppgave 8
+    //////////////////oppgave 8 //////////////////
 
     public static int[] sorterArray ( int[] a){
         int[] copiedArray = new int[a.length];
@@ -334,6 +336,7 @@ public class Oblig1 {
         return indexSortert;
     }
 
+    ////////////////// Oppgave 9///////////////
     public static int[] tredjeMin(int[] a){
         if(a.length < 3) throw new NoSuchElementException("Tabellen har mindre enn 3 tall");
         int[] temp = {a[0],a[1],a[2]};
@@ -380,7 +383,7 @@ public class Oblig1 {
     }
 
 
-    //Oppgave 10
+    //////////////////Oppgave 10 //////////////////
     public static boolean inneholdt(String a, String b) {
         if(a == "") {
             return true;
