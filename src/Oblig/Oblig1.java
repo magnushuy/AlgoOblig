@@ -111,7 +111,7 @@ public class Oblig1 {
      */
 
     //Slutt gjennomsnitt
-
+//
     public static int antallUlikeSortert(int[] b){
 
         //Sjekker om tabellen har lengde 0
