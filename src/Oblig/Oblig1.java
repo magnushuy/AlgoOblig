@@ -99,6 +99,8 @@ public class Oblig1 {
      */
 
 //
+
+    ////////////////Oppgave 2////////////////
     public static int antallUlikeSortert(int[] b){
 
         //Sjekker om tabellen har lengde 0
