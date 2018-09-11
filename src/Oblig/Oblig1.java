@@ -3,7 +3,7 @@
     Tam Thu Caroline Vo, s326167
     Tora Sande Tveit, s326145
     Piotr Jan Kusnierz, s326178
-    Kevin Nguyen Ngo
+    Kevin Nguyen Ngo, s326170
  */
 
 
@@ -57,9 +57,6 @@ public class Oblig1 {
             }
         }
 
-        //Skriver ut største tall i tabellen
-        System.out.println("Største verdi av tabellen: " + a[a.length-1]);
-        //returnerer største tall i tabellen
         return a[a.length-1];
     }
 
@@ -101,7 +98,6 @@ public class Oblig1 {
         }
 
         gjennomsnitt = (float)sum / (float)antallKjøringer;
-        System.out.println("Sum: " + sum + " Gjennomsnitt bytter: " + gjennomsnitt);
         return gjennomsnitt;
 
     }
@@ -226,7 +222,6 @@ public class Oblig1 {
 
     public static void rotasjon ( char[] c){
 
-        System.out.println("Tabell før sortering: " + Arrays.toString(c));
 
         if(c.length == 0) return;
 
@@ -237,7 +232,6 @@ public class Oblig1 {
         }
         c[0] = last;
 
-        System.out.println("Tabell etter sortering: " + Arrays.toString(c));
     }
 
     public static void rotasjon(char[] c, int k){
@@ -280,7 +274,6 @@ public class Oblig1 {
             System.arraycopy(b, min, flett, min * 2, b.length - min);
 
         String flettetStreng = String.valueOf(flett);
-        System.out.println(flettetStreng);
         return flettetStreng;
     }
 
@@ -307,7 +300,6 @@ public class Oblig1 {
             }
         }
 
-        System.out.println(sb.toString());
         return sb.toString();
     }
 
@@ -342,46 +334,51 @@ public class Oblig1 {
         return indexSortert;
     }
 
-    public static int[] tredjeMin ( int[] a){
-        int length = a.length;
-        if (length < 3) throw new NoSuchElementException("tabellen har mindre enn 3 tall");
-        int[] treMin = {a[0],a[1],a[2]};
-        treMin = indekssortering(treMin);
+    public static int[] tredjeMin(int[] a){
+        if(a.length < 3) throw new NoSuchElementException("Tabellen har mindre enn 3 tall");
+        int[] temp = {a[0],a[1],a[2]};
+        temp = indekssortering(temp);
 
-        //Tre hjelpevariabler for index til de minste tallene
-        int indexM = treMin[0];
-        int indexNm = treMin[1];
-        int indexNnm = treMin[2];
+        int indeks1 = temp[0];
+        int indeks2 = temp[1];
+        int indeks3 = temp[2];
 
-        //Tre hjelpevariabler for verdien av de minste tallene
-        int m = a[indexM]; //Minst
-        int nm = a[indexNm]; //Nest minst
-        int nnm = a[indexNnm]; //Nest nest minst
+        int tall1 = a[indeks1];
+        int tall2 = a[indeks2];
+        int tall3 = a[indeks3];
 
+        if(a.length > 3){
+            for(int i = 3; i < a.length; i++){
 
-        if (a.length > 3) {
-            for (int i = 3; i < a.length; i++) {
-                if (a[i] < nnm) { //Hvis a[i] er mindre enn nnm
-                    if (a[i] < nm) {//Hvis a[i] er mindre enn nnm og nm
-                        if (a[i] < m) { //Hvis a[i] er mindre enn nmm, nm og m
-                            nnm = nm;
-                            nm = m;
-                            m = a[i];
-                        } else {
-                            nnm = nm;
-                            nm = a[i];
+                if(a[i] < tall3){
+                    if(a[i] < tall2){
+                        if(a[i] < tall1){
+                            tall3 = tall2;
+                            tall2 = tall1;
+                            tall1 = a[i];
+                            indeks3 = indeks2;
+                            indeks2 = indeks1;
+                            indeks1 = i;
                         }
-                    } else {
-                        nnm = a[i];
+                        else{
+                            tall3 = tall2;
+                            tall2 = a[i];
+                            indeks3 = indeks2;
+                            indeks2 = i;
+                        }
+                    }
+                    else{
+                        tall3 = a[i];
+                        indeks3 = i;
                     }
                 }
             }
         }
 
-        treMin = new int[]{m, nm, nnm};
-        System.out.println("De tre minste tallene i tabellen: \n" + Arrays.toString(treMin));
-        return treMin;
+        temp = new int[] {indeks1,indeks2,indeks3};
+        return temp;
     }
+
 
     //Oppgave 10
     public static boolean inneholdt(String a, String b) {
