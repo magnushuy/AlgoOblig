@@ -205,9 +205,9 @@ public class Oblig1 {
             while ((a[hoyre] & 1) == 0)
                 hoyre--;
         }
-        // Sorting even numbers
+        // Sorterer partall
         Arrays.sort(a,0,venstre);
-        // Sorting Odd numbers
+        // Sorterer oddetall
         Arrays.sort(a,venstre,a.length);
     }
 
