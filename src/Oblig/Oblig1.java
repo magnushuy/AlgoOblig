@@ -10,16 +10,15 @@
 
 package Oblig;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-import java.util.regex.Pattern;
+
 
 public class Oblig1 {
 
     /*
       METODER FRA UNDERVISNINGEN OG HJELPEMETODER
-   */
+    */
     public static void bytt(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
@@ -46,7 +45,6 @@ public class Oblig1 {
                 a[i+1] = temp;
             }
         }
-
         return a[a.length-1];
     }
 
@@ -98,7 +96,7 @@ public class Oblig1 {
         Testet 1 000 000 elementer, 999 985 antall bytter
      */
 
-//
+
 
     ////////////////Oppgave 2////////////////
     public static int antallUlikeSortert(int[] b){
@@ -128,7 +126,6 @@ public class Oblig1 {
                 sammenlign = b[i];
             }
         }
-
         return unike;
     }
 
@@ -207,7 +204,7 @@ public class Oblig1 {
     }
 
 
-    /////////////Oppgave 5 og 6 //////////////////////
+    /////////////Oppgave 5 //////////////////////
 
     public static void rotasjon ( char[] c){
 
@@ -222,6 +219,8 @@ public class Oblig1 {
         c[0] = last;
 
     }
+
+    /////////////Oppgave  6 //////////////////////
 
     public static void rotasjon(char[] c, int k){
 
